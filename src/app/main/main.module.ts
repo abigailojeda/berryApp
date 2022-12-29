@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
 import { MainPageEmptyComponent } from './main-page-empty/main-page-empty.component';
 import { ProjectComponent } from './project/project.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { ProjectComponent } from './project/project.component';
     ProjectComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports:[
     MainPageEmptyComponent

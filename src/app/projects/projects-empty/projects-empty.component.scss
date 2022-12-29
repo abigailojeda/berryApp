@@ -1,0 +1,35 @@
+.empty-cont {
+    border: 2px solid lighten($color: #66636f, $amount: 40);
+    border-radius: 8px;
+    color: #66636f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    margin: 3em auto 0 auto;
+    width: 95%;
+
+    h1{
+        font-size: 2em;
+        margin-bottom: 1em;
+        text-align: center;
+        width: 80%;
+    }
+
+    button{
+        border: 1px solid #6633FF;
+        background-color: transparent;
+        border-radius: 99px;
+        color: #6633FF;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        height: 45px;
+        width: 250px;
+
+        &:hover{
+            background-color:  lighten($color: #6633FF, $amount: 35);
+        }
+    }
+}

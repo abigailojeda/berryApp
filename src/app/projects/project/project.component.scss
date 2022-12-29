@@ -1,0 +1,32 @@
+.categories-cont{
+    width: 85%;
+    margin: 3em auto 0 auto;
+    padding-left: 3em;
+
+    display: flex;
+ 
+    height: 80vh;
+    overflow-x: auto;
+   
+    .categorie{
+        display: flex;
+        height: 90%;
+        width: 285px;
+        min-width: 285px;
+        border: 1px solid #D9D9D9;
+        border-radius: 8px;
+        margin: 40px 70px 0 0;
+
+        .category-header{
+            width: 90%;
+            height: 80px;
+            line-height: 80px;
+            margin: 0 auto;
+            border-bottom: 1px solid #D9D9D9;
+            h3{
+                text-align: center;
+            }
+        }
+
+    }
+}

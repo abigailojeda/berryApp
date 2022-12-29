@@ -1,1 +1,10 @@
-<p>project works!</p>
+<app-projects-empty *ngIf="categories.length<1"></app-projects-empty>
+
+<div class="categories-cont">
+    <div *ngFor="let category of categories" class="categorie">
+   <section class="category-header">
+    <h3>{{category}}</h3>
+   </section>
+    </div>
+</div>
+

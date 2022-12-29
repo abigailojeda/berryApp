@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectComponent implements OnInit {
 
+  public categories = ["ljfbsf", "hbsibcfsdsfnfewsofs", "bdsfobf", "ljfbsf", "hbsibcfsdsfnfewsofs", "bdsfobf", "ljfbsf", "hbsibcfsdsfnfewsofs", "bdsfobf"]
+
   constructor() { }
 
   ngOnInit(): void {
