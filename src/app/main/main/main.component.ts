@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   public projects = ["hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf"]
-
+  public showAddModal = false;
+  public showDeleteModal = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -19,5 +20,19 @@ export class MainComponent implements OnInit {
   }
   test2(){
     console.log('test 2');
+  }
+
+  closeAddModal(){
+    this.showAddModal = false;
+  }
+  openAddModal(){
+    this.showAddModal = true;
+  }
+
+  closeDeleteModal(){
+    this.showDeleteModal = false;
+  }
+  openDeleteModal(){
+    this.showDeleteModal = true;
   }
 }

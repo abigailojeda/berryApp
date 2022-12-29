@@ -3,5 +3,8 @@
     <app-main-page-empty *ngIf="projects.length<1"></app-main-page-empty>
 </ng-container>
 
-<app-project  *ngIf="projects.length>0" [projects] = projects></app-project>
+<app-project (openAdd)="openAddModal()" (openDelete)="openDeleteModal()"  *ngIf="projects.length>0" [projects] = projects></app-project>
 
+<app-modal-add *ngIf="showAddModal" modalSubject = "Project name" (event)="closeAddModal()"></app-modal-add>
+
+<app-modal-delete *ngIf="showDeleteModal" modalSubject = "If you delete the project it cannot be recovered" (event)="closeDeleteModal()" ></app-modal-delete>

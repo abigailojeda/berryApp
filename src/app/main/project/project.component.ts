@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-project',
@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProjectComponent implements OnInit {
 
   @Input() projects:any;
-
+  @Output() openAdd = new EventEmitter();
+  @Output() openDelete = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -19,5 +20,12 @@ export class ProjectComponent implements OnInit {
   }
   test2(){
     console.log('test 2');
+  }
+
+  openAddModal(){
+    this.openAdd.emit()
+  }
+  openDeleteModal(){
+    this.openDelete.emit()
   }
 }
