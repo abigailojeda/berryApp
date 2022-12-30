@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import {RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -10,7 +11,7 @@ export class ProjectComponent implements OnInit {
   @Input() projects:any;
   @Output() openAdd = new EventEmitter();
   @Output() openDelete = new EventEmitter();
-  constructor() { }
+  constructor(private router: RouterModule) { }
 
   ngOnInit(): void {
   }

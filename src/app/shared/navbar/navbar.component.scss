@@ -2,5 +2,14 @@
 .navbar-cont{
     background-color:  $berry-primary;
     padding: 16px 22px;
+
+    img{
+        cursor: pointer;
+
+        &:hover{
+            transform: scale(1.12);
+            opacity: 0.8;
+        }
+    }
     
 }

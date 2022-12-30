@@ -4,6 +4,7 @@ import { MainComponent } from './main/main.component';
 import { MainPageEmptyComponent } from './main-page-empty/main-page-empty.component';
 import { ProjectComponent } from './project/project.component';
 import { SharedModule } from '../shared/shared.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    AppRoutingModule
   ],
   exports:[
     MainPageEmptyComponent
