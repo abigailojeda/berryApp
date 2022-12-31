@@ -4,6 +4,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ModalAddComponent } from './modal-add/modal-add.component';
 import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { ModalTaskComponent } from './modal-task/modal-task.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,16 +13,20 @@ import { AppRoutingModule } from '../app-routing.module';
   declarations: [
     NavbarComponent,
     ModalAddComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ModalTaskComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     NavbarComponent,
     ModalAddComponent, 
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ModalTaskComponent,
   ]
 })
 export class SharedModule { }

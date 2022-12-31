@@ -7,28 +7,34 @@
    </section>
 
    <section class="category-body">
-    <div class="task-cont" *ngFor="let task of category.tasks">
-        <h4>{{task.task_title}}</h4>
-
-        <div class="tags-cont">
-            <ng-container *ngFor="let tag of task.task_tags">
-
-                <div class="tag color-{{tag.tag_color}}" >
-                        {{tag.tag_text}}
-                </div>
-            </ng-container>
-            
+    <ng-container *ngFor="let task of category.tasks">
+        <div class="task-cont" (click)="openTaskModal(task)" >
+            <h4>{{task.task_title}}</h4>
+    
+            <div class="tags-cont">
+                <ng-container *ngFor="let tag of task.task_tags">
+    
+                    <div class="tag color-{{tag.tag_color}}" >
+                            {{tag.tag_text}}
+                    </div>
+                </ng-container>
+                
+            </div>
         </div>
-    </div>
+    </ng-container>
 
-    <div class="add-btn task">
+    <div class="add-btn task" (click)="openAddModal('Task Title')">
         <h4>Add Task</h4>
     </div>
    </section>
     </div>
 
-    <div class="add-btn category">
+    <div class="add-btn category" (click)="openAddModal('Category Name')">
         <h4>Add Category</h4>
     </div>
 </div>
 
+
+<app-modal-add *ngIf="showAddModal" [modalSubject] = "modalSubject" (event)="closeAddModal()"></app-modal-add>
+
+<app-modal-task *ngIf="showTaskModal" [modalSubject] = "modalSubject" [task] = "taskSelected" (event)="closeTaskModal()"></app-modal-task>

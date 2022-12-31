@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
-
+  public showAddModal = false;
+  public showTaskModal = false;
+  public modalSubject='';
+  public taskSelected:any;
   public categories = [
     {name:"categoryyyy",
      tasks : [
@@ -257,5 +260,23 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  closeAddModal(){
+    this.showAddModal = false;
+  }
+  openAddModal(subject:string){
+    this.showAddModal = true;
+    this.modalSubject=subject;
+  }
+
+  openTaskModal(taskSelected:any){
+    this.showTaskModal = true;
+    this.taskSelected = taskSelected;
+  }
+
+  closeTaskModal(){
+    this.showTaskModal = false;
+  }
+
 
 }

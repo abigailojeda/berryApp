@@ -35,6 +35,8 @@
             width: 95%;
             height: 90%;
             overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px 0 50px 0;
 
             .task-cont{
                 background-color: #fff;
@@ -42,9 +44,17 @@
                 border-top-right-radius: 8px;
                 cursor: pointer;
                 margin-bottom: 15px;
+                border: 2px solid transparent;
                 border-bottom: 4px solid #E5AC55;
                 min-height: 120px;
                 padding: 20px 10px 10px 10px;
+
+                &:hover{
+                    border: 2px solid #E5AC55;
+                    border-bottom: 4px solid #E5AC55;
+
+                }
+        
 
                 .tags-cont{
                 width: 100%;
@@ -81,15 +91,20 @@
        
         h4 {
             text-align: center;
+
+            &::selection{
+                background-color: transparent;
+            }
         }
 
         &:hover {
             background-color: lighten($color: #66636f, $amount: 50);
-            transform: scale(1.12);
         }
 
         &.task{
             min-width: 150px;
+            margin-top: 30px;
+
         }
     }
 }

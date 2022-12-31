@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectComponent } from './project/project.component';
 import { ProjectsEmptyComponent } from './projects-empty/projects-empty.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,7 +12,8 @@ import { ProjectsEmptyComponent } from './projects-empty/projects-empty.componen
     ProjectsEmptyComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports:[
     ProjectsEmptyComponent

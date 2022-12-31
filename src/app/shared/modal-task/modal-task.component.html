@@ -1,0 +1,57 @@
+<div class="modal-cont" (click)="closeTaskModal()"></div>
+<section action="" class="modal-content add">
+
+
+  <form class="modal-task-top" [formGroup]="taskForm">
+
+    <div class="info task-section {{editionMode ? 'edition' : ''}}">
+
+        <div class="task-title-cont">
+            <input [readOnly]="!editionMode" type="text" formControlName="title" placeholder="">
+        </div>
+
+        <div class="task-description-cont">
+            <textarea [readOnly]="!editionMode" formControlName="description" id="" cols="30" rows="10"></textarea>
+        </div>
+
+    </div>
+
+    <div class="objectives task-section">
+
+        <div class="objective-content" [ngClass]="editionMode ? 'edition' : ''" *ngFor="let objective of task.task_objectives, index as i">
+            <input type="checkbox" class="objective-check" [id]="i">
+            <label [for]="i" class="objective-check-label">
+                <div *ngIf="editionMode" class="close-objective">✕</div>
+                {{objective.objective_text}}
+            </label>
+        </div>
+
+    </div>
+
+    <div class="tags task-section">
+
+        <div class="tags-content" [ngClass]="editionMode ? 'edition' : ''" >
+            <ng-container *ngFor="let tag of task.task_tags, index as i">
+                <div  class="tag color-{{tag.tag_color}}" >
+                    <div *ngIf="editionMode" class="close-objective">✕</div>
+                   <p>{{tag.tag_text}}</p>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+    
+</form>
+
+  <div class="modal-task-bottom">
+
+    <div class="edition-switch-cont">
+        <input [(ngModel)]="editionMode" (change)="setEditionMode()" type="checkbox" id="edition" class="check-switcher">
+        <label for="edition">Edition</label>
+    </div>
+
+    <button *ngIf="editionMode" (click)="updateTask()" class="cancel">Save</button>
+
+  </div>
+
+</section>
