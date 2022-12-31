@@ -1,21 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-modal-add',
   templateUrl: './modal-add.component.html',
   styleUrls: ['./modal-add.component.scss']
 })
-export class ModalAddComponent implements OnInit {
+export class ModalAddComponent {
 
   @Input() modalSubject:any;
-  @Output() event = new EventEmitter();
+  @Output() toogleModal = new EventEmitter<string>();
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
   
-  closeAddModal(){
-    this.event.emit()
+  //executes the EventEmitter with the method that shows or hides the modal
+  toogleModalOutput(value:string){
+    this.toogleModal.emit(value)
   }
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent {
   public showAddModal = false;
   public showTaskModal = false;
   public modalSubject='';
@@ -404,24 +404,37 @@ export class ProjectComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
 
-  closeAddModal(){
-    this.showAddModal = false;
-  }
-  openAddModal(subject:string){
-    this.showAddModal = true;
-    this.modalSubject=subject;
-  }
+//method to hide or show the different modes, 
+// changing the value of the corresponding boolean 
+// depending on the received parameter
+ toggleModal(option:string, taskSelected?:any){
+    
+    switch(option){
+      case 'open-add-category':
+      this.showAddModal = true;
+      this.modalSubject = 'Category Name'
+      break;
 
-  openTaskModal(taskSelected:any){
-    this.showTaskModal = true;
-    this.taskSelected = taskSelected;
-  }
+      case 'open-task':
+      this.showTaskModal = true;
+      this.taskSelected = taskSelected
+      break;
 
-  closeTaskModal(){
-    this.showTaskModal = false;
+      case 'open-add-task':
+      this.showAddModal = true;
+      this.modalSubject = 'Task Title'
+      break;
+
+      case 'close-add':
+      this.showAddModal = false;
+      break;
+
+      case 'close-task':
+      this.showTaskModal = false;
+      break;
+
+    }
   }
 
 

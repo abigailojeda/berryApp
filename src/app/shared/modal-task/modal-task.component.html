@@ -1,70 +1,136 @@
-<div class="modal-cont" (click)="closeTaskModal()"></div>
+<div class="modal-cont"
+    (click)="toogleModalOutput('close-task')"
+></div>
 <section action="" class="modal-content add">
 
-
-  <form class="modal-task-top" [formGroup]="taskForm">
+    <form class="modal-task-top"
+    [formGroup]="taskForm"
+>
 
     <div class="info task-section {{editionMode ? 'edition' : ''}}">
 
         <div class="task-title-cont">
-            <input [readOnly]="!editionMode" type="text" formControlName="title" placeholder="">
+            <input
+                [readOnly]="!editionMode"
+                type="text" 
+                formControlName="title"
+                placeholder="Task title"
+            >
         </div>
 
         <div class="task-description-cont">
-            <textarea [readOnly]="!editionMode" formControlName="description" id="" cols="30" rows="10"></textarea>
+            <textarea
+                [readOnly]="!editionMode"
+                formControlName="description" 
+            ></textarea>
         </div>
 
     </div>
 
-    <ng-container *ngIf="addObjective && editionMode">
-        <section class="add-element-section  task-section">
+    <ng-container
+        *ngIf="addObjective && editionMode"
+    >
+
+        <section class="add-element-section task-section">
            
-                <input type="text" placeholder="Insert Objective">
-                <button class="save" (click)="hideAddElement('objective')">Save</button>
-                <button class="delete" (click)="hideAddElement('objective')">Cancel</button>
+                <input type="text"
+                    placeholder="Insert Objective">
+
+                <button 
+                    class="save" 
+                    (click)="toggleShowAddElement('close-objective')"
+                >Save</button>
+
+                <button 
+                    class="delete" 
+                    (click)="toggleShowAddElement('close-objective')"
+                >Cancel</button>
       
         </section>
+
     </ng-container>
 
-    <div class="objectives task-section" *ngIf="!addObjective">
+    <div class="objectives task-section"
+        *ngIf="!addObjective"
+    >
 
 
-        <div class="objective-content" [ngClass]="editionMode ? 'edition' : ''" *ngFor="let objective of task.task_objectives, index as i">
-            <input type="checkbox" class="objective-check" [id]="i">
-            <label [for]="i" class="objective-check-label">
-                <div *ngIf="editionMode" class="close-objective">✕</div>
+        <div class="objective-content" 
+            [ngClass]="editionMode ? 'edition' : ''" 
+            *ngFor="let objective of task.task_objectives, index as i"
+        >
+            <input 
+                type="checkbox"
+                class="objective-check" 
+                [id]="i"
+            >
+
+            <label 
+                [for]="i" 
+                class="objective-check-label"
+            >
+                <div class="close-objective"
+                    *ngIf="editionMode" 
+                >✕</div>
+
                 {{objective.objective_text}}
             </label>
         </div>
 
-        <div class="add-btn objective" *ngIf="editionMode" (click)="showAddElement('objective')">
+        <div class="add-btn objective"
+            *ngIf="editionMode" 
+            (click)="toggleShowAddElement('open-objective')">
+
             <h4>Add Objective</h4>
         </div>
 
     </div>
 
-    <ng-container *ngIf="addTag && editionMode">
+    <ng-container
+        *ngIf="addTag && editionMode"
+    >
         <section class="add-element-section task-section">
-     
-                <input type="text" placeholder="Insert Tag Text">
-                <button class="save" (click)="hideAddElement('tag')">Save</button>
-                <button class="delete" (click)="hideAddElement('tag')">Cancel</button>
+                <input 
+                    type="text" 
+                    placeholder="Insert Tag Text"
+                >
+                <button class="save" 
+                    (click)="toggleShowAddElement('close-tag')"
+                >Save</button>
+                <button 
+                    class="delete" 
+                    (click)="toggleShowAddElement('close-tag')"
+                >Cancel</button>
            
         </section>
     </ng-container>
 
-    <div class="tags task-section" *ngIf="!addTag">
+    <div class="tags task-section"
+        *ngIf="!addTag"
+    >
 
-        <div class="tags-content" [ngClass]="editionMode ? 'edition' : ''" >
-            <ng-container *ngFor="let tag of task.task_tags, index as i">
-                <div  class="tag color-{{tag.tag_color}}" >
-                    <div *ngIf="editionMode" class="close-objective">✕</div>
+        <div class="tags-content"
+            [ngClass]="editionMode ? 'edition' : ''" 
+        >
+            <ng-container 
+                *ngFor="let tag of task.task_tags, index as i"
+            >
+                <div class="tag color-{{tag.tag_color}}" 
+                >
+                    <div class="close-objective"
+                        *ngIf="editionMode" 
+                    >✕</div>
+
                    <p>{{tag.tag_text}}</p>
+
                 </div>
             </ng-container>
         </div>
 
-        <div class="add-btn tag" *ngIf="editionMode" (click)="showAddElement('tag')">
+        <div class="add-btn tag"
+            *ngIf="editionMode"
+            (click)="toggleShowAddElement('open-tag')"
+        >
             <h4>Add Tag</h4>
         </div>
 
@@ -73,16 +139,25 @@
     
 </form>
 
+
   <div class="modal-task-bottom">
 
     <div class="edition-switch-cont">
-        <input [(ngModel)]="editionMode" (change)="setEditionMode()" type="checkbox" id="edition" class="check-switcher">
+        <input [(ngModel)]="editionMode"
+            (change)="setEditionMode()"
+            type="checkbox" 
+            id="edition"
+            class="check-switcher"
+        >
         <label for="edition">Edition</label>
     </div>
 
     <div>
-        <!-- <button *ngIf="editionMode" (click)="updateTask()" class="cancel-edition">Cancel</button> -->
-        <button *ngIf="editionMode" (click)="updateTask()" class="save">Save</button>
+        <button
+            *ngIf="editionMode"
+            (click)="updateTask()"
+             class="save"
+        >Save</button>
     </div>
 
   </div>

@@ -7,14 +7,13 @@ import { AppRoutingModule } from '../app-routing.module';
 import { ModalTaskComponent } from './modal-task/modal-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
     NavbarComponent,
     ModalAddComponent,
     ModalDeleteComponent,
-    ModalTaskComponent
+    ModalTaskComponent,
+   
   ],
   imports: [
     CommonModule,

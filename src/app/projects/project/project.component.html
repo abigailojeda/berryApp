@@ -8,7 +8,7 @@
 
    <section class="category-body">
     <ng-container *ngFor="let task of category.tasks">
-        <div class="task-cont" (click)="openTaskModal(task)" >
+        <div class="task-cont" (click)="toggleModal('open-task',task)" >
             <h4>{{task.task_title}}</h4>
     
             <div class="tags-cont">
@@ -23,18 +23,27 @@
         </div>
     </ng-container>
 
-    <div class="add-btn task" (click)="openAddModal('Task Title')">
+    <div class="add-btn task" (click)="toggleModal('open-add-task')">
         <h4>Add Task</h4>
     </div>
    </section>
     </div>
 
-    <div class="add-btn category" (click)="openAddModal('Category Name')">
+    <div class="add-btn category" (click)="toggleModal('open-add-category')">
         <h4>Add Category</h4>
     </div>
 </div>
 
 
-<app-modal-add *ngIf="showAddModal" [modalSubject] = "modalSubject" (event)="closeAddModal()"></app-modal-add>
+<app-modal-add
+    *ngIf="showAddModal" 
+    [modalSubject] = "modalSubject" 
+    (toogleModal)="toggleModal($event)"
+ ></app-modal-add>
 
-<app-modal-task *ngIf="showTaskModal" [modalSubject] = "modalSubject" [task] = "taskSelected" (event)="closeTaskModal()"></app-modal-task>
+<app-modal-task
+    *ngIf="showTaskModal" 
+    [modalSubject] = "modalSubject" 
+    [task] = "taskSelected" 
+    (toogleModal)="toggleModal($event)"
+ ></app-modal-task>

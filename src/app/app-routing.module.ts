@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainComponent } from './main/main/main.component';
 import { ProjectComponent } from './projects/project/project.component';
+import { HomePageComponent } from './home/home-page/home-page.component';
 
 const routes: Routes = [
   {
     path: '',
-   component: MainComponent,
+   component: HomePageComponent,
     pathMatch: 'full'
 },
 {

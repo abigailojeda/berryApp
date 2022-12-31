@@ -1,0 +1,22 @@
+
+<app-home-project-empty
+    *ngIf="projects.length<1"
+></app-home-project-empty>
+
+<app-home-project
+    (toogleModal)="toggleModal($event)"
+    *ngIf="projects.length>0"
+    [projects] = projects
+></app-home-project>
+
+<app-modal-add
+    *ngIf="showAddModal"
+    modalSubject = "Project name" 
+    (toogleModal)="toggleModal($event)"
+></app-modal-add>
+
+<app-modal-delete
+    *ngIf="showDeleteModal"
+    modalSubject = "If you delete the project it cannot be recovered"
+    (toogleModal)="toggleModal($event)"
+></app-modal-delete>

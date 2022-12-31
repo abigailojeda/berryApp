@@ -3,10 +3,10 @@
     <section class="project-content" [routerLink]="['project/4']">
         {{project}}
     </section>
-    <div class="project-close" (click)="openDeleteModal()">✕</div>
+    <div class="project-close" (click)="toogleModalOutput('open-delete')">✕</div>
     </div>
     <div class="project add">
-        <section class="project-content" (click)="openAddModal()">
+        <section class="project-content" (click)="toogleModalOutput('open-add')">
             <h4>Add Project</h4>
         </section>
     </div>
