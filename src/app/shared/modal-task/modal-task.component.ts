@@ -15,6 +15,8 @@ export class ModalTaskComponent implements OnInit {
  
   public editionMode:boolean = false;
   public taskForm: FormGroup ;
+  public addObjective : boolean = false;
+  public addTag : boolean = false;
 
   constructor( public formBuilder: FormBuilder) { 
     this.taskForm = this.formBuilder.group({});
@@ -36,9 +38,39 @@ export class ModalTaskComponent implements OnInit {
 
   setEditionMode(){
     console.log('a veee: ', this.editionMode)
+    this.addObjective = false;
+    this.addTag=false;
   }
 
   updateTask(){
     console.log('updated: ',this.taskForm.value)
+    this.editionMode=false;
+  }
+
+  public showAddElement(value:string){
+    switch(value){
+      case 'objective':
+      this.addObjective = true;
+      break;
+
+      case 'tag':
+      this.addTag = true;
+    }
+  }
+
+  public hideAddElement(value:string){
+    switch(value){
+      case 'objective':
+      this.addObjective = false;
+      break;
+
+      case 'tag':
+      this.addTag = false;
+    }
+  
+  
+  
   }
 }
+
+

@@ -16,7 +16,18 @@
 
     </div>
 
-    <div class="objectives task-section">
+    <ng-container *ngIf="addObjective && editionMode">
+        <section class="add-element-section  task-section">
+           
+                <input type="text" placeholder="Insert Objective">
+                <button class="save" (click)="hideAddElement('objective')">Save</button>
+                <button class="delete" (click)="hideAddElement('objective')">Cancel</button>
+      
+        </section>
+    </ng-container>
+
+    <div class="objectives task-section" *ngIf="!addObjective">
+
 
         <div class="objective-content" [ngClass]="editionMode ? 'edition' : ''" *ngFor="let objective of task.task_objectives, index as i">
             <input type="checkbox" class="objective-check" [id]="i">
@@ -26,9 +37,23 @@
             </label>
         </div>
 
+        <div class="add-btn objective" *ngIf="editionMode" (click)="showAddElement('objective')">
+            <h4>Add Objective</h4>
+        </div>
+
     </div>
 
-    <div class="tags task-section">
+    <ng-container *ngIf="addTag && editionMode">
+        <section class="add-element-section task-section">
+     
+                <input type="text" placeholder="Insert Tag Text">
+                <button class="save" (click)="hideAddElement('tag')">Save</button>
+                <button class="delete" (click)="hideAddElement('tag')">Cancel</button>
+           
+        </section>
+    </ng-container>
+
+    <div class="tags task-section" *ngIf="!addTag">
 
         <div class="tags-content" [ngClass]="editionMode ? 'edition' : ''" >
             <ng-container *ngFor="let tag of task.task_tags, index as i">
@@ -38,6 +63,11 @@
                 </div>
             </ng-container>
         </div>
+
+        <div class="add-btn tag" *ngIf="editionMode" (click)="showAddElement('tag')">
+            <h4>Add Tag</h4>
+        </div>
+
 
     </div>
     
@@ -50,7 +80,10 @@
         <label for="edition">Edition</label>
     </div>
 
-    <button *ngIf="editionMode" (click)="updateTask()" class="cancel">Save</button>
+    <div>
+        <!-- <button *ngIf="editionMode" (click)="updateTask()" class="cancel-edition">Cancel</button> -->
+        <button *ngIf="editionMode" (click)="updateTask()" class="save">Save</button>
+    </div>
 
   </div>
 

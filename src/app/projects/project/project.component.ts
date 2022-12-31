@@ -25,10 +25,156 @@ export class ProjectComponent implements OnInit {
           },
           {objective_text : 'dfddasdasdadfdf',
            objective_done:false
-          }
+          },
+          {objective_text : 'lkvdfgjfdgbdfg',
+          objective_done:true
+         },
+         {objective_text : 'dfdfdf',
+          objective_done:false
+         },
+         {objective_text : 'dfddasdasdadfdf',
+          objective_done:false
+         },
+         {objective_text : 'lkvdfgjfdgbdfg',
+         objective_done:true
+        },
+        {objective_text : 'dfdfdf',
+         objective_done:false
+        },
+        {objective_text : 'dfddasdasdadfdf',
+         objective_done:false
+        },
+        {objective_text : 'lkvdfgjfdgbdfg',
+        objective_done:true
+       },
+       {objective_text : 'dfdfdf',
+        objective_done:false
+       },
+       {objective_text : 'dfddasdasdadfdf',
+        objective_done:false
+       },
+       {objective_text : 'lkvdfgjfdgbdfg',
+       objective_done:true
+      },
+      {objective_text : 'dfdfdf',
+       objective_done:false
+      },
+      {objective_text : 'dfddasdasdadfdf',
+       objective_done:false
+      },
+      {objective_text : 'lkvdfgjfdgbdfg',
+      objective_done:true
+     },
+     {objective_text : 'dfdfdf',
+      objective_done:false
+     },
+     {objective_text : 'dfddasdasdadfdf',
+      objective_done:false
+     },
+     {objective_text : 'lkvdfgjfdgbdfg',
+     objective_done:true
+    },
+    {objective_text : 'dfdfdf',
+     objective_done:false
+    },
+    {objective_text : 'dfddasdasdadfdf',
+     objective_done:false
+    },
+    {objective_text : 'lkvdfgjfdgbdfg',
+    objective_done:true
+   },
+   {objective_text : 'dfdfdf',
+    objective_done:false
+   },
+   {objective_text : 'dfddasdasdadfdf',
+    objective_done:false
+   }
         ],
 
         task_tags: [
+          {
+            tag_text : 'dvnsdv',
+            tag_color: 1
+          },
+          {
+            tag_text : 'aadsd',
+            tag_color: 2
+          },
+          {
+            tag_text : 'asdgdgdhffdh',
+            tag_color: 6
+          }, {
+            tag_text : 'dvnsdv',
+            tag_color: 1
+          },
+          {
+            tag_text : 'aadsd',
+            tag_color: 2
+          },
+          {
+            tag_text : 'asdgdgdhffdh',
+            tag_color: 6
+          },
+          {
+            tag_text : 'dvnsdv',
+            tag_color: 1
+          },
+          {
+            tag_text : 'aadsd',
+            tag_color: 2
+          },
+          {
+            tag_text : 'asdgdgdhffdh',
+            tag_color: 6
+          },
+          {
+            tag_text : 'dvnsdv',
+            tag_color: 1
+          },
+          {
+            tag_text : 'aadsd',
+            tag_color: 2
+          },
+          {
+            tag_text : 'asdgdgdhffdh',
+            tag_color: 6
+          },
+          {
+            tag_text : 'dvnsdv',
+            tag_color: 1
+          },
+          {
+            tag_text : 'aadsd',
+            tag_color: 2
+          },
+          {
+            tag_text : 'asdgdgdhffdh',
+            tag_color: 6
+          },
+          {
+            tag_text : 'dvnsdv',
+            tag_color: 1
+          },
+          {
+            tag_text : 'aadsd',
+            tag_color: 2
+          },
+          {
+            tag_text : 'asdgdgdhffdh',
+            tag_color: 6
+          },
+          {
+            tag_text : 'dvnsdv',
+            tag_color: 1
+          },
+          {
+            tag_text : 'aadsd',
+            tag_color: 2
+          },
+          {
+            tag_text : 'asdgdgdhffdh',
+            tag_color: 6
+          },
           {
             tag_text : 'dvnsdv',
             tag_color: 1
