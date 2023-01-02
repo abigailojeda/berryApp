@@ -1,0 +1,45 @@
+<div class="form-cont">
+    <img class="logo-short"
+        [src]="logoShort" 
+        alt="Berry"
+        [routerLink]="['/user/login']" 
+    >
+    <div class="login-cont">
+        <h3
+            *ngIf="isLogin"
+        >Nice to see you again!</h3>
+        <h3
+            *ngIf="!isLogin"
+        >Welcome Berry!</h3>
+        <input type="text" placeholder="Insert your email">
+        <input class="pass-input" type="password"  placeholder="Insert your password">
+        <input class="pass-input"
+            type="password"  
+            placeholder="Repeat your password"
+            *ngIf="!isLogin"
+        >
+        <p
+            *ngIf="!isLogin"
+        >
+            By registering, you confirm that you have read and
+            accepted our Terms of Service and Privacy Policy
+        </p>
+        <button 
+            (click)="login()"
+            *ngIf="isLogin"
+        >Login</button>
+        <button 
+            (click)="login()"
+            *ngIf="!isLogin"
+        >Register</button>
+    
+        <div class="login-bottom"
+            *ngIf="isLogin"
+        >
+            <button 
+                [routerLink]="['/user/register']" 
+            >New Account</button>
+        </div>
+    </div>
+    <img class="logo-pale" [src]="logoPale" alt="Berry">
+</div>

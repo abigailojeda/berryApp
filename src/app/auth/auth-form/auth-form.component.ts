@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-auth-form',
+  templateUrl: './auth-form.component.html',
+  styleUrls: ['./auth-form.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class AuthFormComponent implements OnInit {
+
+  @Input() isLogin:any;
 
   constructor(private router:Router) { }
 
   public logoPale:string = '';
   public logoShort:string = '';
-
-  public isLogin:boolean = true;
 
   ngOnInit(): void {
     this.logoPale = 'assets/img/logo/BerryLogoPale.svg';
@@ -23,5 +24,4 @@ export class LoginComponent implements OnInit {
   login(){
     this.router.navigate(['/home'])
   }
-
 }

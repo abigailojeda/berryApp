@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
+
+  public logoPale:string = '';
+  public logoShort:string = '';
+
+  public isLogin:boolean = false;
 
   ngOnInit(): void {
+    this.logoPale = 'assets/img/logo/BerryLogoPale.svg';
+    this.logoShort = 'assets/img/logo/BerryLogoColorShort.svg';
   }
+
+  login(){
+    this.router.navigate(['/home'])
+  }
+
 
 }
