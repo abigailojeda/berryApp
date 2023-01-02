@@ -184,7 +184,24 @@
                     background-color: lighten($color: #D9D9D9, $amount: 8)
                 }
             }
+         
         }
+
+        &.add-element-section{
+            padding-top: 20%;
+            text-align: center;
+          
+              button{
+                  &.cancel{
+                      background-color: #F26E6E;
+                  }
+          
+                  &.save{
+                      background-color: #45A866;
+                  }
+              }
+           
+          }
     }
 
     .objective-content{
@@ -289,7 +306,7 @@
     color: #A35596 ;
 }
 .color-3{
-    background-color: #FFD79C;
+    background-color: #f7e1c0;
     color: #E5AC55 ;
 }
 .color-4{
@@ -326,18 +343,3 @@
     }
 }
 
-.add-element-section{
-  //  background-color: #235F82;
-   padding-top: 2em;
-
-    button{
-        &.cancel{
-            background-color: #F26E6E;
-        }
-
-        &.save{
-            background-color: #45A866;
-        }
-    }
- 
-}

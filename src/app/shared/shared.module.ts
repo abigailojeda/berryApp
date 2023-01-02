@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModalAddComponent } from './modal-add/modal-add.component';
 import { ModalDeleteComponent } from './modal-delete/modal-delete.component';
-import { AppRoutingModule } from '../app-routing.module';
 import { ModalTaskComponent } from './modal-task/modal-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule
   ],
