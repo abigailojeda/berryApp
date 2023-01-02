@@ -5,7 +5,11 @@ import { ProjectComponent } from './projects/project/project.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'user',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
+  },
+  {
+    path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
@@ -15,7 +19,7 @@ const routes: Routes = [
   
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'user'
   }
 ];
 

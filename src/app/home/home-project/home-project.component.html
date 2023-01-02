@@ -1,6 +1,6 @@
 <div class="projects-cont" *ngIf="projects.length>0">
     <div class="project" *ngFor="let project of projects" >
-    <section class="project-content" [routerLink]="['project/4']">
+    <section class="project-content" [routerLink]="['/project/4']">
         {{project}}
     </section>
     <div class="project-close" (click)="toogleModalOutput('open-delete')">✕</div>
