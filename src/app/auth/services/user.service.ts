@@ -43,6 +43,7 @@ export class UserService {
     return options;
   }
 
+
   getUsers(token:any) {
     let myOptions = this.getOptions(token);
     //console.log(myOptions)
@@ -61,6 +62,7 @@ export class UserService {
 
   setCurrentUser(user: any) {
     this.userStorage.currentUser = user;
+    console.log(this.userStorage)
   }
 
   setCurrentId(id: number) {

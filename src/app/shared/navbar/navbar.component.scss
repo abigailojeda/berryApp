@@ -42,6 +42,9 @@
             width: 100px;
             padding: 15px;
             position: absolute;
+            overflow:hidden;
+                    white-space:nowrap;
+                    text-overflow: ellipsis;
             h5 {
                 &.logout-btn {
                     border: 1px solid #6633ff;
@@ -52,6 +55,14 @@
                     padding: 5px 0;
                     text-align: center;
                     width: 100%;
+                }
+
+                &.username{
+                    width: 90%;
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow: ellipsis;
+                    
                 }
             }
         }

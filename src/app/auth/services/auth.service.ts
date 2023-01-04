@@ -40,6 +40,7 @@ export class AuthService {
 
         if (res.user) {
           await localStorage.setItem("token", res.access_token);
+          await localStorage.setItem("user", JSON.stringify(res.user));
         }
       })
 
@@ -50,7 +51,7 @@ export class AuthService {
     return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}/api/users/signin`, null, this.getOptions(user)).pipe(
       tap(async (res: any) => {
         if (res.user) {
-          this.UserService.setCurrentId(res.user.id)
+          this.UserService.setCurrentUser(res.user)
           await localStorage.setItem("token", res.access_token);
         }
       })
@@ -59,9 +60,8 @@ export class AuthService {
 
 
   async logout() {
-     localStorage.removeItem('currentUser');
-     localStorage.removeItem('currentId');
-     localStorage.removeItem('currentUserName');
+     localStorage.removeItem('user');
+     localStorage.removeItem("token");
     this.UserService.setCurrentUser({})
   }
 

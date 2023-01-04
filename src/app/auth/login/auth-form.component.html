@@ -1,0 +1,25 @@
+<div class="form-cont">
+    <a href="https://berryweb.netlify.app/"  target="_blank">
+        <img class="logo-short"
+            [src]="logoShort" 
+            alt="Berry" 
+        >
+    </a>
+    <div class="login-cont">
+        <h3>Nice to see you again!</h3>
+
+        <input type="text" placeholder="Insert your email">
+        <input class="pass-input" type="password"  placeholder="Insert your password">
+     
+        <button 
+            (click)="login()"
+        >Login</button>
+    
+        <div class="login-bottom">
+            <button 
+                [routerLink]="['/user/register']" 
+            >New Account</button>
+        </div>
+    </div>
+    <img class="logo-pale" [src]="logoPale" alt="Berry">
+</div>
