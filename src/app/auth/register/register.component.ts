@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth.service';
 
@@ -41,7 +40,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register(){
+  public register(){
     //this.router.navigate(['/home'])
     console.log('register: ', this.registerForm.value)
     let user: User = {

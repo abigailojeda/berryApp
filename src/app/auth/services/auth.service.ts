@@ -53,6 +53,7 @@ export class AuthService {
         if (res.user) {
           this.UserService.setCurrentUser(res.user)
           await localStorage.setItem("token", res.access_token);
+          await localStorage.setItem("user", JSON.stringify(res.user));
         }
       })
     );
@@ -64,15 +65,6 @@ export class AuthService {
      localStorage.removeItem("token");
     this.UserService.setCurrentUser({})
   }
-
-  // async isLoggedIn() {
-  //   // return this.authSubject.asObservable();
-  //   let token = await this.storage.get("token");
-  //   if (token){ //Just check if exists. This should be checked with current date
-  //     return true;
-  //   }
-  //   return false;
-  // }
 
 }
 
