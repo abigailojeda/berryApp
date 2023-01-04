@@ -4,15 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule } from '@angular/router';
-import { AuthFormComponent } from './auth-form/auth-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent,
-    AuthFormComponent
+    RegisterComponent
   ],
   imports: [
     CommonModule, 

@@ -66,6 +66,13 @@ export class AuthService {
     this.UserService.setCurrentUser({})
   }
 
+   isLoggedIn() {
+    let token = localStorage.getItem("token");
+    if (token){
+      return true;
+    }
+    return false;
+  }
 }
 
 
