@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,7 +11,9 @@ export class HomePageComponent {
   public projects = ["hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf"]
   public showAddModal:boolean = false;
   public showDeleteModal:boolean = false;
-  constructor() { }
+  constructor(
+    private AuthService:AuthService
+  ) { }
 
   //method to hide or show the different modes, 
   // changing the value of the corresponding boolean 
@@ -34,5 +37,9 @@ export class HomePageComponent {
       this.showDeleteModal = false;
       break;
     }
+  }
+
+  getId(){
+    console.log('THIS: ',this.AuthService.user)
   }
 }
