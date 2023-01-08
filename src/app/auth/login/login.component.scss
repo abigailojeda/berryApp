@@ -84,9 +84,14 @@
             &.active, &.focus{
                 outline: none;
             }
-    
+
             &:hover{
                 background-color: lighten($color: #6633ff, $amount: 5);
+            }
+            
+            &:disabled{
+                background-color: #F4F3F8;
+                color: #66636F;
             }
         }
     

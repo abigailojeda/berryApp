@@ -1,6 +1,8 @@
 <form
     class="form-cont"
+    autocomplete="off"
     [formGroup]="loginForm"
+    (ngSubmit)="login()"
 >
     <a
         href="https://berryweb.netlify.app/"
@@ -17,13 +19,13 @@
         <h3>Nice to see you again!</h3>
         <p
             class="error"
-            *ngIf="loginError"
-        > Email or password is incorrect</p>
+            *ngIf="loginError!=''"
+        > {{loginError}}</p>
 
         <input
             type="text"
             placeholder="Insert your email"
-            formControlName="username"
+            formControlName="email"
         />
         <div class="pass-input">
             <input
@@ -46,7 +48,10 @@
         </div>
         
 
-        <button (click)="login()">Login</button>
+        <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        >Login</button>
 
         <div class="login-bottom">
             <button [routerLink]="['/user/register']">New Account</button>

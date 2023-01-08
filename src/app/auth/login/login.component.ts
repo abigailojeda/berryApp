@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { User } from '../interfaces/user';
 
@@ -11,29 +11,29 @@ import { User } from '../interfaces/user';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm: FormGroup;
-  public loginError:boolean = false;
+  public loginForm: FormGroup = this.formBuilder.group({
+    email: ['',[Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });;
+  public loginError:string = '';
+  public logoPale:string = '';
+  public logoShort:string = '';
+  public passStyle:string='fill: #66636F';
+  public showPass:boolean=false;
 
   constructor(
     private router:Router,
     public formBuilder: FormBuilder,
     private authService: AuthService
     ) { 
-      this.loginForm =this.formBuilder.group({});
     }
 
-  public logoPale:string = '';
-  public logoShort:string = '';
-  public passStyle:string='fill: #66636F';
-  public showPass:boolean=false;
+ 
 
   ngOnInit(): void {
     this.logoPale = 'assets/img/logo/BerryLogoPale.svg';
     this.logoShort = 'assets/img/logo/BerryLogoColorShort.svg';
-    this.loginForm = this.formBuilder.group({
-      username: [''],
-      password: ['']
-    });
+   
   }
   public tooglePass(){
     this.showPass = !this.showPass;
@@ -44,21 +44,27 @@ export class LoginComponent implements OnInit {
   
     let user: User = {
       id: null!,
-      username: this.loginForm.value.username,
+      email: this.loginForm.value.email,
       password: this.loginForm.value.password,
+      username:null!
     };
-    this.authService.login(user).subscribe((res)=>{
-      if(!res.access_token) {
-       this.loginError = !this.loginError
-        return;
+
+    this.authService.login(user)
+    .subscribe(res=>{
+      console.log('dbdb', res)
+      if(res === true){
+        this.router.navigate(['/home'])
+      }else{
+        console.log('dbdb', res)
+
+        if(res?.error?.msg){
+          this.loginError=res.error.msg;
+        }else{
+          this.loginError='wrong email or password';
+        }
       }
-      
-      this.router.navigateByUrl('/home');
-      this.loginForm.reset();
-    }, err => {
-      this.loginError = !this.loginError
-    });
-    this.router.navigate(['/register'])
+    })
+
   }
 
 

@@ -1,8 +1,9 @@
 export interface AuthResponse {
-    user: {
-        id: number;
-        password: string;
-        username: string;
-    },
-    access_token: string
+   
+    ok:boolean;
+    id?: number;
+    username?: string;
+    token?: string;
+    msg?: string;
+
 }

@@ -1,78 +1,95 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './user.service';
 import { User } from '../interfaces/user';
 import { AuthResponse } from '../interfaces/auth-response';
-import { Observable } from 'rxjs';
-import { tap } from  'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from  'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  AUTH_SERVER_ADDRESS:  string  =  'http://localhost:4000';
+  private AUTH_SERVER_ADDRESS:  string  =  environment.baseUrl;
+  private _user!:User;
+
+  get user(){
+    return {...this._user};
+  }
 
   constructor(
     private httpClient: HttpClient,
     private UserService: UserService
   ) { }
 
-  private getOptions(user: User){
-    let base64UserAndPassword = window.btoa(user.username + ":" + user.password);
+  register(user:User){
+    const url = `${this.AUTH_SERVER_ADDRESS}/auth/signup`
+    const body = user;
 
-    let basicAccess = 'Basic ' + base64UserAndPassword;
-
-    let options = {
-      headers: {
-        'Authorization' : basicAccess,
-        'Content-Type' : 'application/x-www-form-urlencoded',
-      }
-    };
-
-    return options;
-  }
-
-  
-  register(user: User): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}/api/users/`, user, this.getOptions(user)).pipe(
-      tap(async (res:  AuthResponse ) => {
-
-        if (res.user) {
-          await localStorage.setItem("token", res.access_token);
-          await localStorage.setItem("user", JSON.stringify(res.user));
+    return this.httpClient.post<AuthResponse>(url,user)
+    .pipe(
+      tap(res => {
+        if(res.ok){
+          localStorage.setItem('token', res.token!)
+          this._user = {
+            username: res.username!,
+            id: res.id!,
+          }
         }
-      })
-
+      }),
+      map(res => res.ok),
+      //to be able to subscribe, itcannot be a boolean, use of() to make an observable
+      catchError(err => of(err.error))
     );
   }
 
-  login(user: User): Observable<AuthResponse> {
-    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}/api/users/signin`, null, this.getOptions(user)).pipe(
-      tap(async (res: any) => {
-        if (res.user) {
-          this.UserService.setCurrentUser(res.user)
-          await localStorage.setItem("token", res.access_token);
-          await localStorage.setItem("user", JSON.stringify(res.user));
+  login(user:User){
+    const url = `${this.AUTH_SERVER_ADDRESS}/auth/signin`
+    const body = user;
+
+    return this.httpClient.post<AuthResponse>(url,user)
+    .pipe(
+      tap(res => {
+        if(res.ok){
+          localStorage.setItem('token', res.token!)
+          this._user = {
+            username: res.username!,
+            id: res.id!,
+          }
         }
-      })
+      }),
+      map(res => res.ok),
+      //to be able to subscribe, itcannot be a boolean, use of() to make an observable
+      catchError(err => of(err.error))
     );
   }
 
+  validateToken():Observable<boolean>{
+    const url = `${this.AUTH_SERVER_ADDRESS}/auth/token`;
+    const headers = new HttpHeaders()
+    .set('x-token', localStorage.getItem('token') || '')
+
+    return this.httpClient.get<AuthResponse>(url, {headers})
+    .pipe(
+      map(res =>{
+        localStorage.setItem('token', res.token!)
+        this._user = {
+          username: res.username!,
+          id: res.id!,
+        }
+        return res.ok
+      }),
+      catchError(err => of(false))
+    )
+  }
 
   async logout() {
-     localStorage.removeItem('user');
      localStorage.removeItem("token");
-    this.UserService.setCurrentUser({})
   }
 
-   isLoggedIn() {
-    let token = localStorage.getItem("token");
-    if (token){
-      return true;
-    }
-    return false;
-  }
+
 }
 
 

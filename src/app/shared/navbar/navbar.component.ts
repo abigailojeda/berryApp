@@ -33,9 +33,11 @@ export class NavbarComponent implements OnInit {
   }
 
   setUserName(){
-    let aux = JSON.parse(localStorage.getItem("user")!);
-    this.userName = aux?.username;
-    console.log('aqui ssñds: ',this.userName)
+     let user = this.AuthService.user;
+    this.userName = user?.username!;
+    // console.log('aqui ssñds: ',this.userName)
+    console.log(this.AuthService.user)
+    //return this.AuthService.user
   }
 
 
