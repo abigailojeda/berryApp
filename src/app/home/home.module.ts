@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HomeProjectComponent } from './home-project/home-project.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // module for the home page. Section that is displayed when entering the application and shows the list of saved projects and the option to create a new project
 
@@ -12,12 +13,15 @@ import { HomeRoutingModule } from './home-routing.module';
   declarations: [
     HomeProjectEmptyComponent,
     HomePageComponent,
-    HomeProjectComponent
+    HomeProjectComponent,
+  
   ],
   imports: [
     CommonModule,
     SharedModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

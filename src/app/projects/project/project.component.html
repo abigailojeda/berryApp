@@ -1,39 +1,46 @@
 <app-navbar></app-navbar>
 
-<app-projects-empty *ngIf="categories.length<1"></app-projects-empty>
+<input type="text"
+    class="project-title-input"
+    [(ngModel)]="projectName" 
+>
 
 <div class="categories-cont">
+    <ng-container >
     <div *ngFor="let category of categories" class="categorie">
-   <section class="category-header">
-    <h4>{{category.name}}</h4>
-   </section>
-
-   <section class="category-body">
-    <ng-container *ngFor="let task of category.tasks">
-        <div class="task-cont" (click)="toggleModal('open-task',task)" >
-            <h4>{{task.task_title}}</h4>
     
-            <div class="tags-cont">
-                <ng-container *ngFor="let tag of task.task_tags">
-    
-                    <div class="tag color-{{tag.tag_color}}" >
-                            {{tag.tag_text}}
-                    </div>
-                </ng-container>
-                
-            </div>
-        </div>
-    </ng-container>
+        <section class="category-header">
+         <h4>{{category?.name}}</h4>
+        </section>
 
-    <div class="add-btn task" (click)="toggleModal('open-add-task')">
-        <h4>Add Task</h4>
-    </div>
-   </section>
+        <section class="category-body">
+        
+             <div *ngFor="let task of category?.tasks" 
+             class="task-cont" 
+             (click)="toggleModal('open-task',task)" >
+                 <h4>{{task?.task_title}}</h4>
+
+                 <div class="tags-cont">
+                     <ng-container *ngFor="let tag of task?.task_tags">
+
+                         <div class="tag color-{{tag.tag_color}}" >
+                                 {{tag.tag_text}}
+                         </div>
+                     </ng-container>
+
+                 </div>
+             </div>
+  
+         <div class="add-btn task" (click)="toggleModal('open-add-task')">
+             <h4>Add Task</h4>
+         </div>
+        </section>
     </div>
 
     <div class="add-btn category" (click)="toggleModal('open-add-category')">
         <h4>Add Category</h4>
     </div>
+</ng-container>
 </div>
 
 

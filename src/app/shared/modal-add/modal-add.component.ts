@@ -9,11 +9,17 @@ export class ModalAddComponent {
 
   @Input() modalSubject:any;
   @Output() toogleModal = new EventEmitter<string>();
+  @Output() createProject = new EventEmitter<string>();
+
+  public inputValue:string = '';
 
   constructor() { }
   
   //executes the EventEmitter with the method that shows or hides the modal
   toogleModalOutput(value:string){
     this.toogleModal.emit(value)
+  }
+  createProjectOutput(){
+    this.createProject.emit(this.inputValue)
   }
 }

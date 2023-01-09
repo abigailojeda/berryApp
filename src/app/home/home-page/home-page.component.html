@@ -1,12 +1,8 @@
 <app-navbar></app-navbar>
 
-<app-home-project-empty
-    *ngIf="projects.length<1"
-></app-home-project-empty>
-
 <app-home-project
     (toogleModal)="toggleModal($event)"
-    *ngIf="projects.length>0"
+    (selectProject) ="selectProject($event)"
     [projects] = projects
 ></app-home-project>
 
@@ -14,10 +10,12 @@
     *ngIf="showAddModal"
     modalSubject = "Project name" 
     (toogleModal)="toggleModal($event)"
+    (createProject)="createProject($event)"
 ></app-modal-add>
 
 <app-modal-delete
     *ngIf="showDeleteModal"
     modalSubject = "If you delete the project it cannot be recovered"
     (toogleModal)="toggleModal($event)"
+    (deleteProject)="deleteProject()"
 ></app-modal-delete>

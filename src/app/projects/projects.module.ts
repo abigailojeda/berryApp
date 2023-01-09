@@ -4,6 +4,7 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectsEmptyComponent } from './projects-empty/projects-empty.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectsRoutingModule } from './projects-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,9 @@ import { ProjectsRoutingModule } from './projects-routing.module';
   imports: [
     CommonModule,
     SharedModule,
-    ProjectsRoutingModule
+    ProjectsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     ProjectsEmptyComponent

@@ -3,6 +3,13 @@
 ></div>
 
 <form action="" class="modal-content add">
-  <input type="text" [placeholder]=modalSubject/>
-  <button class="save">Save</button>
+  <input type="text"
+    [placeholder]=modalSubject
+    [(ngModel)] = inputValue
+    [ngModelOptions]="{standalone: true}"
+  />
+  <button class="save"
+    (click)="toogleModalOutput('close-add');
+    createProjectOutput()"
+  >Save</button>
 </form>

@@ -11,6 +11,7 @@ export class HomeProjectComponent implements OnInit {
 
   @Input() projects:any;
   @Output() toogleModal = new EventEmitter<string>();
+  @Output() selectProject = new EventEmitter<string>();
   constructor(private router: RouterModule) { }
 
   ngOnInit(): void {
@@ -19,5 +20,8 @@ export class HomeProjectComponent implements OnInit {
   //executes the EventEmitter with the method that shows or hides the modal
   toogleModalOutput(value:string){
     this.toogleModal.emit(value)
+  }
+  selectProjectOutput(value:any){
+    this.selectProject.emit(value);
   }
 }

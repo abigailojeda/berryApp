@@ -5,6 +5,11 @@
     <p class="modal-advice delete-advice">
         {{modalSubject}}
     </p>
-  <button class="cancel">Cancel</button>
-  <button class="delete">Delete</button>
+  <button class="cancel"
+    (click)="toogleModalOutput('close-delete')"
+  >Cancel</button>
+  <button class="delete"
+    (click)="deleteProjectOutput();
+    toogleModalOutput('close-delete')"
+  >Delete</button>
 </form>

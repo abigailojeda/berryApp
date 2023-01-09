@@ -1,24 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
+import { ProjectService } from '../../services/project.service';
+import { Project } from '../../interfaces/project';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
 
-  public projects = ["hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf", "hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf","oldshnfphnf","hpig", "lhesoifes", "oldshnfphnf"]
+  public projects: any = []
   public showAddModal:boolean = false;
   public showDeleteModal:boolean = false;
+  public user_id:string = '';
+  public projectSelectedId:string = '';
+
   constructor(
-    private AuthService:AuthService
+    private AuthService:AuthService,
+    private ProjectService:ProjectService
   ) { }
+
+
+  ngOnInit(): void {
+    this.setUserId();
+    this.getProjects();
+  }
 
   //method to hide or show the different modes, 
   // changing the value of the corresponding boolean 
   // depending on the received parameter
-  toggleModal(option:string){
+ public toggleModal(option:string){
     
     switch(option){
       case 'open-add':
@@ -39,7 +51,43 @@ export class HomePageComponent {
     }
   }
 
-  getId(){
-    console.log('THIS: ',this.AuthService.user)
+  public setUserId(){
+    this.user_id = (this.AuthService.user?.id)?.toString() || '';
+
+  }
+
+  public getProjects(){
+    this.ProjectService.getProjects(this.user_id)
+    .subscribe(projects =>{
+      this.projects = projects;
+    })
+  }
+
+  public createProject(project_name:string){
+
+    let project: Project = {
+      _id:null!,
+      user_id:this.user_id,
+      project_name : project_name,
+      categories : []
+    };
+
+    this.ProjectService.createProject(project)
+    .subscribe((project) =>{
+      this.projects.push(project)
+    })
+  }
+  
+  public selectProject(projectId:string){
+    this.projectSelectedId = projectId;
+    console.log('to delete: ', this.projectSelectedId)
+  }
+
+  public deleteProject(){
+    this.ProjectService.deleteProject(this.projectSelectedId)
+    .subscribe(res =>{
+      this.getProjects();
+    })
+
   }
 }
