@@ -19,6 +19,11 @@ export class ProjectService {
     return this.HttpClient.get(url)
   }
 
+  public getProjectById(project_id:string){
+    const url = `${this.AUTH_SERVER_ADDRESS}/project/detail/${project_id}`;
+    return this.HttpClient.get<Project>(url)
+  }
+
   public createProject(project:Project){
     const url = `${this.AUTH_SERVER_ADDRESS}/project`;
     return this.HttpClient.post(url, project);

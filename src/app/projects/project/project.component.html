@@ -6,8 +6,8 @@
 >
 
 <div class="categories-cont">
-    <ng-container >
-    <div *ngFor="let category of categories" class="categorie">
+    <ng-container  *ngFor="let category of categories">
+    <div *ngIf="category?.name !=''" class="categorie">
     
         <section class="category-header">
          <h4>{{category?.name}}</h4>
@@ -40,7 +40,7 @@
     <div class="add-btn category" (click)="toggleModal('open-add-category')">
         <h4>Add Category</h4>
     </div>
-</ng-container>
+    </ng-container>
 </div>
 
 

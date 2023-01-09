@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from '../../services/project.service';
+import { Project } from '../../interfaces/project';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnInit {
   public showAddModal = false;
   public showTaskModal = false;
   public modalSubject='';
   public taskSelected:any;
 
   public projectName='dddd'
-  public categories = [
-
-  {name:"",
+  public categories = [{name:"",
   tasks : [
    {
      task_title :'',
@@ -37,13 +38,21 @@ export class ProjectComponent {
   ]  
 }]
 
-  constructor() { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private ProjectService:ProjectService
+  ) { }
+
+  ngOnInit(): void {
+    this.activatedRoute.params
+        .subscribe( ({ id }) => this.getCategories(id) );
+  }
 
 
 //method to hide or show the different modes, 
 // changing the value of the corresponding boolean 
 // depending on the received parameter
- toggleModal(option:string, taskSelected?:any){
+ public toggleModal(option:string, taskSelected?:any){
     
     switch(option){
       case 'open-add-category':
@@ -70,6 +79,17 @@ export class ProjectComponent {
       break;
 
     }
+  }
+
+  public getCategories<Project>(id : string){
+    this.ProjectService.getProjectById(id)
+    .subscribe(project => {
+      console.log('this is the project: ', project.categories)
+      if(project?.categories!){
+        console.log('vaciiio')
+      }
+    
+    })
   }
 
 
