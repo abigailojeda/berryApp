@@ -295,31 +295,72 @@
     }
 }
 
+.color-options-cont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px;
+    margin: 0.8em auto 1em auto;
 
+    .color-option{
+        height: 25px;
+        width: 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid transparent;
+
+        &:hover{
+            transform: scale(1.12);
+        }
+
+        &.selected{
+            transform: scale(1.12);
+            border: 2px solid #6633FF;
+        }
+    }
+}
 
 .color-1{
     background-color: #EAB2C0;
     color: #AF465F ;
+    p{
+        color: #AF465F ;
+    }
 }
 .color-2{
     background-color: #EAB2E1;
     color: #A35596 ;
+    p{
+        color: #A35596 ;
+    }
 }
 .color-3{
     background-color: #f7e1c0;
     color: #E5AC55 ;
+    p{
+        color: #E5AC55 ;
+    }
 }
 .color-4{
     background-color: #CCA3F4;
     color: #6d2060 ;
+    p{
+        color: #6d2060 ;
+    }
 }
 .color-5{
     background-color: #8CD0F6;
-    color: #235F82  ;
+    color: #235F82;
+    p{
+        color: #235F82;
+    }
 }
 .color-6{
     background-color: #B2EAE0;
-    color: #277B6C ;
+    color: #277B6C;
+    p{
+        color: #277B6C ;
+    }
 }
 
 .add-btn{

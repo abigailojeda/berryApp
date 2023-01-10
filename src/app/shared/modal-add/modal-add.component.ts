@@ -10,6 +10,7 @@ export class ModalAddComponent {
   @Input() modalSubject:any;
   @Output() toogleModal = new EventEmitter<string>();
   @Output() createProject = new EventEmitter<string>();
+  
 
   public inputValue:string = '';
 
@@ -22,4 +23,5 @@ export class ModalAddComponent {
   createProjectOutput(){
     this.createProject.emit(this.inputValue)
   }
+
 }

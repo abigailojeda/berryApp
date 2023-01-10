@@ -14,6 +14,12 @@ export class ProjectService {
     private HttpClient:HttpClient
   ) { }
 
+  public createProject(project:Project){
+    const url = `${this.AUTH_SERVER_ADDRESS}/project`;
+    return this.HttpClient.post(url, project);
+
+  }
+
   public getProjects(user_id:string){
     const url = `${this.AUTH_SERVER_ADDRESS}/project/${user_id}`;
     return this.HttpClient.get(url)
@@ -24,10 +30,10 @@ export class ProjectService {
     return this.HttpClient.get<Project>(url)
   }
 
-  public createProject(project:Project){
-    const url = `${this.AUTH_SERVER_ADDRESS}/project`;
-    return this.HttpClient.post(url, project);
 
+  public updateProjectById(project_id:string, project:Project){
+    const url = `${this.AUTH_SERVER_ADDRESS}/project/${project_id}`;
+    return this.HttpClient.put(url, project);
   }
 
   public deleteProject(project_id:string){

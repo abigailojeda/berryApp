@@ -22,6 +22,7 @@
             <textarea
                 [readOnly]="!editionMode"
                 formControlName="description" 
+                placeholder="With edit mode enabled you can insert a description here"
             ></textarea>
         </div>
 
@@ -34,11 +35,14 @@
         <section class="add-element-section task-section">
            
                 <input type="text"
-                    placeholder="Insert Objective">
+                    placeholder="Insert Objective"
+                    [(ngModel)]="newObjectiveText"
+                    [ngModelOptions]="{standalone: true}"
+                >
 
                 <button 
                     class="save" 
-                    (click)="toggleShowAddElement('close-objective')"
+                    (click)="toggleShowAddElement('close-objective'); createObjective()"
                 >Save</button>
 
                 <button 
@@ -54,15 +58,16 @@
         *ngIf="!addObjective"
     >
 
-
         <div class="objective-content" 
             [ngClass]="editionMode ? 'edition' : ''" 
-            *ngFor="let objective of task.task_objectives, index as i"
+            *ngFor="let objective of objectivesArray, index as i"
         >
             <input 
                 type="checkbox"
                 class="objective-check" 
                 [id]="i"
+                [checked]="objective.objective_done"
+                (change)="toggleObjetiveStatus(objective)"
             >
 
             <label 
@@ -71,6 +76,7 @@
             >
                 <div class="close-objective"
                     *ngIf="editionMode" 
+                    (click)="deleteObjective(objective)"
                 >✕</div>
 
                 {{objective.objective_text}}
@@ -93,9 +99,20 @@
                 <input 
                     type="text" 
                     placeholder="Insert Tag Text"
+                    [(ngModel)]="newTagText"
+                    [ngModelOptions]="{standalone: true}"
                 >
+                <div class="color-options-cont">
+                    <div class="color-option color-1 {{defaultTagColor == 1 ? 'selected':''}}" (click)="changeDefaultTagColor(1)"></div>
+                    <div class="color-option color-2 {{defaultTagColor == 2 ? 'selected':''}}" (click)="changeDefaultTagColor(2)"></div>
+                    <div class="color-option color-3 {{defaultTagColor == 3 ? 'selected':''}}" (click)="changeDefaultTagColor(3)"></div>
+                    <div class="color-option color-4 {{defaultTagColor == 4 ? 'selected':''}}" (click)="changeDefaultTagColor(4)"></div>
+                    <div class="color-option color-5 {{defaultTagColor == 5 ? 'selected':''}}" (click)="changeDefaultTagColor(5)"></div>
+                    <div class="color-option color-6 {{defaultTagColor == 6 ? 'selected':''}}" (click)="changeDefaultTagColor(6)"></div>
+                </div>
                 <button class="save" 
-                    (click)="toggleShowAddElement('close-tag')"
+                    (click)="toggleShowAddElement('close-tag');
+                    createTag()"
                 >Save</button>
                 <button 
                     class="delete" 
@@ -113,7 +130,7 @@
             [ngClass]="editionMode ? 'edition' : ''" 
         >
             <ng-container 
-                *ngFor="let tag of task.task_tags, index as i"
+                *ngFor="let tag of tagsArray, index as i"
             >
                 <div class="tag color-{{tag.tag_color}}" 
                 >
@@ -155,7 +172,8 @@
     <div>
         <button
             *ngIf="editionMode"
-            (click)="updateTask()"
+            (click)="updateTaskOnProject();
+            toogleModalOutput('close-task')"
              class="save"
         >Save</button>
     </div>

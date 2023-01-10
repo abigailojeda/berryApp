@@ -80,7 +80,6 @@ export class HomePageComponent implements OnInit {
   
   public selectProject(projectId:string){
     this.projectSelectedId = projectId;
-    console.log('to delete: ', this.projectSelectedId)
   }
 
   public deleteProject(){

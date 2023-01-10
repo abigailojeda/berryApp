@@ -1,23 +1,26 @@
 <app-navbar></app-navbar>
 
-<input type="text"
-    class="project-title-input"
-    [(ngModel)]="projectName" 
->
+<h3 class="project-title-input"
+>{{project?.project_name | titlecase}}</h3>
 
 <div class="categories-cont">
     <ng-container  *ngFor="let category of categories">
-    <div *ngIf="category?.name !=''" class="categorie">
+    <div *ngIf="category?.category_name !=''" class="categorie">
     
         <section class="category-header">
-         <h4>{{category?.name}}</h4>
+        <div class="category-close"
+            (click)="toggleModal('open-delete');
+            selectCategory(category._id)"
+        >✕</div>
+         <h4>{{category?.category_name}}</h4>
         </section>
 
         <section class="category-body">
         
-             <div *ngFor="let task of category?.tasks" 
+             <div *ngFor="let task of category?.task" 
              class="task-cont" 
-             (click)="toggleModal('open-task',task)" >
+             (click)=" selectCategory(category._id);
+             toggleModal('open-task',task)" >
                  <h4>{{task?.task_title}}</h4>
 
                  <div class="tags-cont">
@@ -31,16 +34,20 @@
                  </div>
              </div>
   
-         <div class="add-btn task" (click)="toggleModal('open-add-task')">
+         <div class="add-btn task"
+            (click)="toggleModal('open-add-task');
+            selectCategory(category._id)"
+        >
              <h4>Add Task</h4>
          </div>
         </section>
     </div>
 
+   
+    </ng-container>
     <div class="add-btn category" (click)="toggleModal('open-add-category')">
         <h4>Add Category</h4>
     </div>
-    </ng-container>
 </div>
 
 
@@ -48,11 +55,21 @@
     *ngIf="showAddModal" 
     [modalSubject] = "modalSubject" 
     (toogleModal)="toggleModal($event)"
+    (createProject) ="updateProject($event)"
  ></app-modal-add>
 
 <app-modal-task
     *ngIf="showTaskModal" 
     [modalSubject] = "modalSubject" 
     [task] = "taskSelected" 
+    [project] ="project"
+    [selectedCategory] ="categorySelectedId"
     (toogleModal)="toggleModal($event)"
  ></app-modal-task>
+
+ <app-modal-delete
+    *ngIf="showDeleteModal"
+    modalSubject = "If you delete the category it cannot be recovered"
+    (toogleModal)="toggleModal($event)"
+    (deleteProject)="deleteCategory()"
+></app-modal-delete>
