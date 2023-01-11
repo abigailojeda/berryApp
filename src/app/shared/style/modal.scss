@@ -7,6 +7,10 @@
     width: 100%;
     position: fixed;
     top: 0;
+   
+    &.delete-modal{
+        z-index: 5!important;
+    }
  
 }
 
@@ -22,7 +26,7 @@
     top:40%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 5;
+    
 }
  
 button{
@@ -54,7 +58,6 @@ button{
 
  .cancel:hover {
     background-color: #61b37c;
-    display: none;
  }
  .delete{
      background-color: #F26E6E;

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeProjectEmptyComponent } from './home-project-empty/home-project-empty.component';
+
 import { HomePageComponent } from './home-page/home-page.component';
 import { HomeProjectComponent } from './home-project/home-project.component';
 import { SharedModule } from '../shared/shared.module';
@@ -11,7 +11,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    HomeProjectEmptyComponent,
     HomePageComponent,
     HomeProjectComponent,
   

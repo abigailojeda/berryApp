@@ -28,6 +28,7 @@ export class ModalTaskComponent {
   public tagsArray:any;
   public newTagText:string = '';
   public defaultTagColor:number =1;
+  public showDeleteModal:boolean = false;
 
   constructor( 
     public formBuilder: FormBuilder,
@@ -44,10 +45,6 @@ export class ModalTaskComponent {
  
    this.objectivesArray = this.task.objectives
    this.tagsArray = this.task.tags
-
-   console.log('and this is the project: ', this.project)
-
-   console.log('ssssss',this.objectivesArray, '/',this.task)
    }
 
  
@@ -76,12 +73,22 @@ export class ModalTaskComponent {
       this.addTag = true;
       break;
 
+      case 'open-delete':
+      this.showDeleteModal = true;
+      break;
+
       case 'close-objective':
       this.addObjective = false;
       break;
 
+      case 'close-delete':
+      this.showDeleteModal = false;
+      break;
+
       case 'close-tag':
       this.addTag = false;
+
+
     }
   }
 
@@ -113,8 +120,6 @@ export class ModalTaskComponent {
         objective.objective_done = !objective.objective_done
       }
     })
-
-    console.log(this.objectivesArray)
   }
 
   
@@ -129,10 +134,8 @@ export class ModalTaskComponent {
       tag_color:this.defaultTagColor
     }
 
-    console.log(this.newTagText)
     if(this.newTagText.trim()!=''){
       this.tagsArray.push(tag)
-      console.log(this.tagsArray)
       this.newTagText = '';
     }
   }
@@ -147,9 +150,9 @@ export class ModalTaskComponent {
       tags: this.tagsArray
     }
 
-    console.log(this.task._id)
-    console.log(updatedTask)
-    console.log(this.selectedCategory)
+    // console.log(this.task._id)
+    // console.log(updatedTask)
+    // console.log(this.selectedCategory)
 
       //add task
       this.project.categories.map((category:Category)=>{
@@ -157,8 +160,11 @@ export class ModalTaskComponent {
          // category.task?.push(task);
          if(category.task){
           category?.task.map((task:any)=>{
-            if(task._id= this.tagsArray._id){
+            if(task._id= this.task._id){
               task = updatedTask
+              
+              console.log(task, ' / ', updatedTask)
+              console.log('result: ', this.project)
             }
           })
          }
@@ -169,13 +175,41 @@ export class ModalTaskComponent {
       this.ProjectService.updateProjectById(this.project._id, this.project)
       .subscribe((project) =>{
         this.project = project;
-       // this.getCategories(this.project._id)
+       //this.getCategories(this.project._id)
 
-      })
+       })
 
     this.editionMode=false;
   }
 
+  deleteTask(){
+    
+
+    this.project.categories.map((category:Category)=>{
+      if(category._id === this.selectedCategory){
+       // category.task?.push(task);
+       if(category.task){
+        console.log('yes')
+        category.task.map((task)=>{
+          console.log(task._id, ' / ', this.task._id)
+          console.log(task._id == this.task._id )
+        })
+        category?.task.filter((taskSelected:Task) =>{
+          return taskSelected._id == this.task._id;
+        })
+        console.log('filter: ', category.task)
+       }
+      }
+    })
+
+    console.log('borrasaaaando: ', this.project)
+
+    this.ProjectService.updateProjectById(this.project._id, this.project)
+    .subscribe((project) =>{
+      this.project = project;
+      //this.getCategories(this.project._id)
+    })
+  }
 
 
 }

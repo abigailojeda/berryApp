@@ -82,6 +82,14 @@
       
     }
 
+    .delete-task{
+        cursor:pointer;
+
+        &:hover{
+          transform: scale(1.12);
+        }
+    }
+
  
 }
 

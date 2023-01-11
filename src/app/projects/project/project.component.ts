@@ -24,13 +24,13 @@ export class ProjectComponent implements OnInit {
    {
      task_title :'',
      task_description:'',
-     task_objectives : [
+     objectives : [
        {objective_text : '',
         objective_done:true
        }
      ],
 
-     task_tags: [
+     tags: [
        {
          tag_text : '',
          tag_color: 0
@@ -181,9 +181,6 @@ export class ProjectComponent implements OnInit {
 
     })
   }
-
-
-  //CRUD TASKS:
 
 
 }

@@ -170,6 +170,7 @@
     </div>
 
     <div>
+        <svg (click)="toggleShowAddElement('open-delete')" class="delete-task"  *ngIf="!editionMode" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" style="fill: rgb(190, 190, 190);"><path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path></svg>
         <button
             *ngIf="editionMode"
             (click)="updateTaskOnProject();
@@ -181,3 +182,11 @@
   </div>
 
 </section>
+
+
+<app-modal-delete
+    *ngIf="showDeleteModal"
+    modalSubject = "If you delete the task it cannot be recovered"
+    (toogleModal)="toggleShowAddElement($event)"
+    (deleteProject)="deleteTask()"
+></app-modal-delete>
