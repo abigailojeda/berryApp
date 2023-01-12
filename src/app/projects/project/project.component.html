@@ -8,10 +8,9 @@
         </h3>
     </div>
 </div>
-
-<div class="categories-cont">
-    <!-- CATEGORY -->
-    <ng-container  *ngFor="let category of categories">
+<drag-scroll class="categories-cont">
+ <!-- CATEGORY -->
+ <ng-container  *ngFor="let category of categories">
     <div *ngIf="category?.category_name !=''" class="categorie">
     
         <section class="category-header">
@@ -65,7 +64,9 @@
     <div class="add-btn category" (click)="toggleModal('open-add-category')">
         <h4>Add Category</h4>
     </div>
-</div>
+</drag-scroll>
+
+
 
 
 <app-modal-add

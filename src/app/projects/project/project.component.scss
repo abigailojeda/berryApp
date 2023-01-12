@@ -81,10 +81,18 @@
                 &:hover{
                     background-color: #d9d9d9;
                 }
+
+                &::selection{
+                    background-color: transparent;
+                }
             }
 
             h4 {
                 text-align: center;
+
+                &::selection{
+                    background-color: transparent;
+                }
             }
         }
 
@@ -108,6 +116,12 @@
                     border-bottom: 4px solid #E5AC55;
                     min-height: 120px;
                     padding: 20px 10px;
+
+                    h4{
+                        &::selection{
+                            background-color: transparent;
+                        }
+                    }
     
                     &:hover{
                         border: 2px solid #E5AC55;
@@ -154,8 +168,13 @@
                             align-items: center;
                             font-weight: bold;
                             font-size: 13px;
+
+                            &::selection{
+                                background-color: transparent;
+                            }
                         }
                     }
+                    
                 }
 
                 .delete-item{
@@ -198,6 +217,10 @@
 
                     &.completed{
                         color: #45A866;
+                    }
+
+                    &::selection{
+                        background-color: transparent;
                     }
                 }
                 
@@ -258,4 +281,27 @@
 .color-6{
     background-color: #B2EAE0;
     color: #277B6C ;
+}
+
+
+.test{
+    width: 700px;
+    height: 108px;
+    background-color: #277B6C;
+    margin: 0 10px;
+}
+
+
+@media (max-width: 750px) {
+
+    .categories-cont{
+        width: 95%;
+    }
+}
+@media (max-width: 500px) {
+
+    .categories-cont{
+        width: 95%;
+        padding-left: 20px;
+    }
 }

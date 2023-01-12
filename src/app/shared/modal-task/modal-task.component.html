@@ -96,7 +96,7 @@
         *ngIf="addTag && editionMode"
     >
     <!-- to add tags -->
-        <section class="add-element-section task-section">
+        <section class="add-element-section task-section with-colors">
                 <input 
                     type="text" 
                     placeholder="Insert Tag Text"
@@ -171,7 +171,7 @@
         <label for="edition">Edition</label>
     </div>
 
-    <div>
+    <div class="btn-cont">
         <button
             *ngIf="editionMode"
             (click)="updateTaskOnProject();

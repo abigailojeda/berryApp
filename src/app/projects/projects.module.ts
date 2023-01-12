@@ -5,6 +5,7 @@ import { ProjectsEmptyComponent } from './projects-empty/projects-empty.componen
 import { SharedModule } from '../shared/shared.module';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 
@@ -18,7 +19,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     SharedModule,
     ProjectsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragScrollModule
   ],
   exports:[
     ProjectsEmptyComponent
