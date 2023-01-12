@@ -110,6 +110,8 @@ export class ModalTaskComponent {
         objective.objective_done = !objective.objective_done
       }
     })
+
+    this.updateTaskOnProject()
   }
 
   //TAGS
@@ -141,7 +143,6 @@ export class ModalTaskComponent {
     //aux array to save updated task and change it on selected category
     let tasksAux:any = [];
 
-  
       //find tag & update
       this.project.categories.map((category:Category, index:number)=>{
         if(category._id === this.selectedCategory){
@@ -167,9 +168,6 @@ export class ModalTaskComponent {
     this.editionMode=false;
   }
 
-
-
- 
 
 }
 

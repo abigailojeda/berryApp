@@ -1,7 +1,13 @@
 <app-navbar></app-navbar>
 
-<h3 class="project-title-input"
->{{project?.project_name | titlecase}}</h3>
+<div class="project-title-input">
+    <div class="back-cont" [routerLink]="['/home']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path></svg>
+        <h3>
+         {{project?.project_name | titlecase}}
+        </h3>
+    </div>
+</div>
 
 <div class="categories-cont">
     <!-- CATEGORY -->
@@ -27,10 +33,9 @@
             selectElementToDelete('task', task);
             selectCategory(category._id)"
          >✕</div>
-                <div class="task-content"
+                <div class="task-content {{getObjectivesQuantity(task?.objectives) == task?.objectives?.length ? 'completed' : '' }} {{task?.objectives?.length <1 ? 'blocked':''}}"
                     (click)=" selectCategory(category._id);
-                    toggleModal('open-task',task)"
-                >
+                    toggleModal('open-task',task)">
                 <h4>{{task?.task_title}}</h4>
                 <div class="tags-cont">
                     <ng-container *ngFor="let tag of task?.tags">
@@ -40,6 +45,9 @@
                         </div>
                     </ng-container>
                 </div>
+                <div class="counter {{getObjectivesQuantity(task?.objectives) < task?.objectives?.length ? 'wip' : 'completed' }}"
+                    *ngIf="task?.objectives?.length>0"
+                >{{getObjectivesQuantity(task?.objectives)}}/{{task?.objectives?.length}}</div>
                </div>
             </div>
   

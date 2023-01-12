@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/project.service';
 import { Category } from '../../interfaces/category';
 import { Task } from '../../interfaces/task';
+import { TaskObjectives } from '../../interfaces/taskObjective';
 
 @Component({
   selector: 'app-project',
@@ -94,7 +95,7 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  //CRUD CATEGORIES:
+//CRUD CATEGORIES:
 
   public getCategories(id : string){
     this.ProjectService.getProjectById(id)
@@ -118,7 +119,7 @@ export class ProjectComponent implements OnInit {
 
   public updateProject(value:string){
 
-    //CATEGORY
+  //CATEGORY
     if(this.modalSubject.includes('Category')){
 
       //create category
@@ -139,7 +140,7 @@ export class ProjectComponent implements OnInit {
       })
     }
 
-    //TASK
+  //TASK
     else if(this.modalSubject.includes('Task')){
 
       //create task
@@ -181,7 +182,7 @@ export class ProjectComponent implements OnInit {
 
     console.log(this.elementToDelete)
 
-    //DELETE CATEGORY
+  //DELETE CATEGORY
     if(this.elementToDelete === 'category'){
       this.project.categories = this.project.categories.filter((category:Category) => {
         return category._id != this.selectedCategory
@@ -195,7 +196,7 @@ export class ProjectComponent implements OnInit {
       })
     }
 
-    //DELETE TASK
+  //DELETE TASK
     else if(this.elementToDelete === 'task'){
       
         //aux array to save updated task and change it on selected category
@@ -223,6 +224,21 @@ export class ProjectComponent implements OnInit {
     
    
   }
+
+//GET OBJECTIVES COUNTER
+
+getObjectivesQuantity(objectives:TaskObjectives[]){
+  let counter:number = 0;
+
+  objectives.map(obj => {
+    if(obj.objective_done){
+      counter ++
+    }
+  })
+
+  return counter;
+
+}
 
 
 

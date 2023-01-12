@@ -1,16 +1,39 @@
 .project-title-input{
     width: 85%;
-    display: flex;
+   
     margin: 3em auto 0 auto;
     padding: 0 0.5em 1em 0.5em;
     border: none;
     border-bottom: 1px solid #d9d9d9;
     background-color: transparent;
-    font-size: 16px;
+    
+    .back-cont{
+        display: flex;
+        align-items: center;
+        width: 120px;
+        h3{
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-    &:focus, &:active{
-        outline: none;
+        svg{
+            fill: #66636F;
+        }
+
+        &:hover{
+            svg{
+                fill: #6633FF;
+            }
+
+            h3{
+                color: #6633FF;
+            }
+        }
+       
     }
+   
+
+    
 }
 
 .categories-cont {
@@ -84,7 +107,7 @@
                     border: 2px solid transparent;
                     border-bottom: 4px solid #E5AC55;
                     min-height: 120px;
-                    padding: 20px 10px 10px 10px;
+                    padding: 20px 10px;
     
                     &:hover{
                         border: 2px solid #E5AC55;
@@ -92,6 +115,27 @@
     
                     }
             
+            
+                    &.completed{
+                        border-bottom: 4px solid #45A866;
+
+                        &:hover{
+                            border: 2px solid #45A866;
+                            border-bottom: 4px solid #45A866;
+        
+                        }
+                    }
+                    &.blocked{
+                        border-bottom: 4px solid #CAC2E0;
+
+                        &:hover{
+                            border: 2px solid #CAC2E0;
+                            border-bottom: 4px solid #CAC2E0;
+        
+                        }
+                    }
+
+
     
                     .tags-cont{
                     width: 100%;
@@ -138,6 +182,22 @@
                 
                     &::selection{
                         background-color: transparent;
+                    }
+                }
+
+                .counter{
+                    position: absolute;
+                    right: 5px;
+                    bottom: 5px;
+                    font-size: 0.9em;
+                    font-weight: bold;
+
+                    &.wip{
+                        color: #E5AC55;
+                    }
+
+                    &.completed{
+                        color: #45A866;
                     }
                 }
                 
