@@ -129,13 +129,13 @@ export class ProjectComponent implements OnInit {
       }
 
       //add category
-      this.project.categories = [...this.project.categories, category];
+      this.project.categories = [...this.project?.categories, category];
 
       //update project with new category
-      this.ProjectService.updateProjectById(this.project._id, this.project)
+      this.ProjectService.updateProjectById(this.project?._id, this.project)
       .subscribe((project) =>{
         this.project = project;
-        this.getCategories(this.project._id)
+        this.getCategories(this.project?._id)
 
       })
     }
@@ -152,7 +152,7 @@ export class ProjectComponent implements OnInit {
       }
 
       //add task
-      this.project.categories.map((category:Category)=>{
+      this.project?.categories.map((category:Category)=>{
         if(category._id === this.selectedCategory){
           category.task?.push(task);
         }
@@ -160,7 +160,7 @@ export class ProjectComponent implements OnInit {
 
       //update project with new task
 
-      this.ProjectService.updateProjectById(this.project._id, this.project)
+      this.ProjectService.updateProjectById(this.project?._id, this.project)
       .subscribe((project) =>{
         this.project = project;
         this.getCategories(this.project._id)
@@ -184,11 +184,11 @@ export class ProjectComponent implements OnInit {
 
   //DELETE CATEGORY
     if(this.elementToDelete === 'category'){
-      this.project.categories = this.project.categories.filter((category:Category) => {
+      this.project.categories = this.project?.categories?.filter((category:Category) => {
         return category._id != this.selectedCategory
       })
   
-      this.ProjectService.updateProjectById(this.project._id, this.project)
+      this.ProjectService.updateProjectById(this.project?._id, this.project)
       .subscribe((project) =>{
         this.project = project;
         this.getCategories(this.project._id)
@@ -215,7 +215,7 @@ export class ProjectComponent implements OnInit {
         })
       
         //update project with task deleted
-        this.ProjectService.updateProjectById(this.project._id, this.project)
+        this.ProjectService.updateProjectById(this.project?._id, this.project)
         .subscribe((project) =>{
           this.project = project;
           this.getCategories(this.project._id)
@@ -231,7 +231,7 @@ getObjectivesQuantity(objectives:TaskObjectives[]){
   let counter:number = 0;
 
   objectives.map(obj => {
-    if(obj.objective_done){
+    if(obj?.objective_done){
       counter ++
     }
   })

@@ -74,8 +74,12 @@ export class HomePageComponent implements OnInit {
 
     this.ProjectService.createProject(project)
     .subscribe((project) =>{
-      this.projects.push(project)
+      this.projects.push(project);
+      this.getProjects()
     })
+
+    
+  
   }
   
   public selectProject(projectId:string){
