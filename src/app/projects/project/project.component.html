@@ -4,35 +4,44 @@
 >{{project?.project_name | titlecase}}</h3>
 
 <div class="categories-cont">
+    <!-- CATEGORY -->
     <ng-container  *ngFor="let category of categories">
     <div *ngIf="category?.category_name !=''" class="categorie">
     
         <section class="category-header">
         <div class="category-close"
             (click)="toggleModal('open-delete');
-            selectCategory(category._id)"
+            selectCategory(category._id);
+            selectElementToDelete('category')"
         >✕</div>
          <h4>{{category?.category_name}}</h4>
         </section>
 
         <section class="category-body">
-        
-             <div *ngFor="let task of category?.task" 
-             class="task-cont" 
-             (click)=" selectCategory(category._id);
-             toggleModal('open-task',task)" >
-                 <h4>{{task?.task_title}}</h4>
 
-                 <div class="tags-cont">
-                     <ng-container *ngFor="let tag of task?.tags">
+        <!-- TASK -->
+            <div *ngFor="let task of category?.task" 
+             class="task-cont">
+             <div class="delete-item"
+             (click)="toggleModal('open-delete');
+            selectElementToDelete('task', task);
+            selectCategory(category._id)"
+         >✕</div>
+                <div class="task-content"
+                    (click)=" selectCategory(category._id);
+                    toggleModal('open-task',task)"
+                >
+                <h4>{{task?.task_title}}</h4>
+                <div class="tags-cont">
+                    <ng-container *ngFor="let tag of task?.tags">
 
-                         <div class="tag color-{{tag.tag_color}}" >
-                                 {{tag.tag_text}}
-                         </div>
-                     </ng-container>
-
-                 </div>
-             </div>
+                        <div class="tag color-{{tag.tag_color}}" >
+                                {{tag.tag_text}}
+                        </div>
+                    </ng-container>
+                </div>
+               </div>
+            </div>
   
          <div class="add-btn task"
             (click)="toggleModal('open-add-task');
@@ -53,7 +62,7 @@
 
 <app-modal-add
     *ngIf="showAddModal" 
-    [modalSubject] = "modalSubject" 
+    [modalSubject] = "modalSubject"
     (toogleModal)="toggleModal($event)"
     (createProject) ="updateProject($event)"
  ></app-modal-add>
@@ -63,7 +72,7 @@
     [modalSubject] = "modalSubject" 
     [task] = "taskSelected" 
     [project] ="project"
-    [selectedCategory] ="categorySelectedId"
+    [selectedCategory] ="selectedCategory"
     (toogleModal)="toggleModal($event)"
  ></app-modal-task>
 
@@ -71,5 +80,5 @@
     *ngIf="showDeleteModal"
     modalSubject = "If you delete the category it cannot be recovered"
     (toogleModal)="toggleModal($event)"
-    (deleteProject)="deleteCategory()"
+    (deleteProject)="deleteElement()"
 ></app-modal-delete>

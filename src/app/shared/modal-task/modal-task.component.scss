@@ -94,7 +94,7 @@
 }
 
 
-.close-objective{
+.delete-item{
     cursor: pointer;
     position: absolute;
     top: -10px;
@@ -297,7 +297,7 @@
         position: relative;
         text-align: center;
 
-        .close-objective{
+        .delete-item{
             right: -10px;
         }
     }

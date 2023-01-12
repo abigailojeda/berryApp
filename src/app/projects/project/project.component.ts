@@ -15,10 +15,11 @@ export class ProjectComponent implements OnInit {
   public showDeleteModal:boolean = false;
   public modalSubject='';
   public taskSelected:any;
+  public elementToDelete:string='';
 
   public projectName='dddd'
   public project:any;
-  public categorySelectedId:string='';
+  public selectedCategory:string='';
   public categories:any = [{category_name:"",
   tasks : [
    {
@@ -110,6 +111,11 @@ export class ProjectComponent implements OnInit {
     })
   }
 
+  public selectCategory(categoryId:string){
+    this.selectedCategory = categoryId;
+  }
+
+
   public updateProject(value:string){
 
     //CATEGORY
@@ -146,7 +152,7 @@ export class ProjectComponent implements OnInit {
 
       //add task
       this.project.categories.map((category:Category)=>{
-        if(category._id === this.categorySelectedId){
+        if(category._id === this.selectedCategory){
           category.task?.push(task);
         }
       })
@@ -162,25 +168,62 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  public selectElementToDelete(value:string, taskToSelect?:any){
+    this.elementToDelete = value;
 
-  public selectCategory(categoryId:string){
-    this.categorySelectedId = categoryId;
+    if(taskToSelect){
+      this.taskSelected = taskToSelect;
+    }
   }
 
 
-  public deleteCategory(){
+  public deleteElement(){
 
-    this.project.categories = this.project.categories.filter((category:Category) => {
-      return category._id != this.categorySelectedId
-    })
+    console.log(this.elementToDelete)
 
-    this.ProjectService.updateProjectById(this.project._id, this.project)
-    .subscribe((project) =>{
-      this.project = project;
-      this.getCategories(this.project._id)
+    //DELETE CATEGORY
+    if(this.elementToDelete === 'category'){
+      this.project.categories = this.project.categories.filter((category:Category) => {
+        return category._id != this.selectedCategory
+      })
+  
+      this.ProjectService.updateProjectById(this.project._id, this.project)
+      .subscribe((project) =>{
+        this.project = project;
+        this.getCategories(this.project._id)
+  
+      })
+    }
 
-    })
+    //DELETE TASK
+    else if(this.elementToDelete === 'task'){
+      
+        //aux array to save updated task and change it on selected category
+        let tasksAux:any = [];
+
+        //find tag & filter to delete taskSelected
+        this.project.categories.map((category:Category, index:number)=>{
+          if(category._id === this.selectedCategory){
+            console.log('yes')
+           tasksAux = category?.task?.filter((task:Task) =>{
+              return task._id != this.taskSelected._id;
+            })
+          
+            this.project.categories[index].task = tasksAux;
+          }
+        })
+      
+        //update project with task deleted
+        this.ProjectService.updateProjectById(this.project._id, this.project)
+        .subscribe((project) =>{
+          this.project = project;
+          this.getCategories(this.project._id)
+        })
+    }
+    
+   
   }
+
 
 
 }
