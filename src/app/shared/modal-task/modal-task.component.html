@@ -2,6 +2,9 @@
     (click)="toogleModalOutput('close-task')"
 ></div>
 <section action="" class="modal-content add">
+    <div class="close-item"
+                    (click)="toogleModalOutput('close-task')"
+                >✕</div>
 
     <form class="modal-task-top"
     [formGroup]="taskForm"
@@ -138,6 +141,7 @@
                 >
                     <div class="delete-item"
                         *ngIf="editionMode" 
+                        (click)="deleteTag(tag)"
                     >✕</div>
 
                    <p>{{tag.tag_text}}</p>

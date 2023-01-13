@@ -3,6 +3,27 @@
 .modal-content{
     width: 95%;
     top: 20%;
+
+    .close-item{
+        position: absolute;
+                right: 5px;
+                top: 5px;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: #d9d9d9;
+                }
+
+                &::selection{
+                    background-color: transparent;
+                }
+    }
 }
 
 
@@ -197,7 +218,9 @@
 
         &.add-element-section{
             padding-top: 20%;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           
               button{
                   &.cancel{

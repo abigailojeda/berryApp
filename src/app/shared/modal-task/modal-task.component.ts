@@ -18,6 +18,7 @@ export class ModalTaskComponent {
   @Input() selectedCategory:any;
   @Input() task:any;
   @Output() toogleModal = new EventEmitter<string>();
+  
  
   public editionMode:boolean = false;
   public taskForm: FormGroup ;
@@ -97,7 +98,7 @@ export class ModalTaskComponent {
 
   deleteObjective(objectiveSelected:TaskObjectives){
    
-    this.objectivesArray = this.objectivesArray.filter((objective:Object) =>{
+    this.objectivesArray = this.objectivesArray.filter((objective:TaskObjectives) =>{
       return objective != objectiveSelected
     })
 
@@ -131,7 +132,20 @@ export class ModalTaskComponent {
     }
   }
 
+  deleteTag(tagSelected:TaskTag){
+   
+    this.tagsArray = this.tagsArray.filter((tag:TaskTag) =>{
+      return tag != tagSelected
+    })
+
+  }
+
+  //UPDATE TASK
+
+
   updateTaskOnProject(){
+
+    
 
     let updatedTask:Task ={
       task_title : this.taskForm.value.title,
@@ -147,11 +161,11 @@ export class ModalTaskComponent {
       this.project.categories.map((category:Category, index:number)=>{
         if(category._id === this.selectedCategory){
         
-         category?.task?.map((task:any)=>{
-            if(task._id== this.task._id){
+         category?.task?.map((taskUpdate:any)=>{
+            if(taskUpdate == this.task){
               tasksAux.push(updatedTask)
             }else{
-              tasksAux.push(task)
+              tasksAux.push(taskUpdate)
             }
           })
   
@@ -163,6 +177,7 @@ export class ModalTaskComponent {
       this.ProjectService.updateProjectById(this.project._id, this.project)
       .subscribe((project) =>{
         this.project = project;
+       
        })
 
     this.editionMode=false;

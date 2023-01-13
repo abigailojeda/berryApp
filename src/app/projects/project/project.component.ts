@@ -69,6 +69,7 @@ export class ProjectComponent implements OnInit {
       case 'open-task':
       this.showTaskModal = true;
       this.taskSelected = taskSelected
+      
       break;
 
       case 'open-add-task':
@@ -97,17 +98,14 @@ export class ProjectComponent implements OnInit {
 
 //CRUD CATEGORIES:
 
+
   public getCategories(id : string){
     this.ProjectService.getProjectById(id)
 
     .subscribe(project => {
     
       this.project = project;
-
-      if(project?.categories?.length!>0){
-        this.categories = project.categories;
-        
-      } 
+      this.categories = project?.categories;
     
     })
   }
@@ -119,7 +117,11 @@ export class ProjectComponent implements OnInit {
 
   public updateProject(value:string){
 
-  //CATEGORY
+    if(value.trim()== ''){
+      return;
+    }
+
+  //ADD CATEGORY
     if(this.modalSubject.includes('Category')){
 
       //create category
@@ -129,7 +131,10 @@ export class ProjectComponent implements OnInit {
       }
 
       //add category
-      this.project.categories = [...this.project?.categories, category];
+
+      //push() is quicker than [...]
+      //this.project.categories = [...this.project?.categories, category];
+      this.project?.categories.push(category);
 
       //update project with new category
       this.ProjectService.updateProjectById(this.project?._id, this.project)
@@ -140,7 +145,7 @@ export class ProjectComponent implements OnInit {
       })
     }
 
-  //TASK
+  //ADD TASK
     else if(this.modalSubject.includes('Task')){
 
       //create task
@@ -164,7 +169,6 @@ export class ProjectComponent implements OnInit {
       .subscribe((project) =>{
         this.project = project;
         this.getCategories(this.project._id)
-
       })
     }
   }
@@ -180,9 +184,8 @@ export class ProjectComponent implements OnInit {
 
   public deleteElement(){
 
-    console.log(this.elementToDelete)
-
   //DELETE CATEGORY
+  
     if(this.elementToDelete === 'category'){
       this.project.categories = this.project?.categories?.filter((category:Category) => {
         return category._id != this.selectedCategory
@@ -205,7 +208,7 @@ export class ProjectComponent implements OnInit {
         //find tag & filter to delete taskSelected
         this.project.categories.map((category:Category, index:number)=>{
           if(category._id === this.selectedCategory){
-            console.log('yes')
+
            tasksAux = category?.task?.filter((task:Task) =>{
               return task._id != this.taskSelected._id;
             })
