@@ -2,7 +2,7 @@
 Berry is an app of the MEAN Stack tack.
 starting from the idea of the to do list I wanted to apply it to the scrum style, inspired by trello and jira.  
 The functionality is a crud of projects, categories and tasks, which can have objectives and tags.  
-➜ Demo:
+➜ Demo:  
 [Landing Page](https://berryweb.netlify.app/home)  
 [App](https://berry-app.netlify.app/user/login)  
 
